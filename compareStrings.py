@@ -36,3 +36,5 @@ n1 = 4
 n2 = 5
 s3 = "2**10 = {0} y {1}*{2} = {3:.3f}".format(2**10, n1, n2, n1*n2)
 print(s3)
+
+print(a.find("dro"))
