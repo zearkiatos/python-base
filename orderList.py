@@ -6,7 +6,7 @@ def main_program() -> None:
     while key_word_to_close != option:
         word = input('\nPlease type a new word ')
         add_word(word_list, word)
-        sort(word_list)
+        word_list = custom_sort(word_list)
 
         print('\nThe list has this values \n', word_list)
         option = input(
@@ -15,6 +15,18 @@ def main_program() -> None:
 
 def add_word(word_list: list, new_word: list) -> None:
     word_list.append(new_word)
+
+
+def custom_sort(word_list: list) -> list:
+    sentinel = ''
+    for i in range(0, len(word_list)):
+        for j in range(i+1, len(word_list)):
+            if(word_list[i].upper() > word_list[j].upper()):
+                sentinel = word_list[i]
+                word_list[i] = word_list[j]
+                word_list[j] = sentinel
+
+    return word_list
 
 
 def sort(word_list: list) -> list:
