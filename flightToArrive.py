@@ -40,11 +40,32 @@ def calculate_arrive_flight(flights: list) -> list:
         duration_time = flight['duration_time'].split(':')
         time = arrive_flight_calculator(int(leave_time[0]), int(leave_time[1]), int(
             leave_time[2]), int(duration_time[0]), int(duration_time[1]), int(duration_time[2]))
-        arrive_flight.append([{
+        arrive_flight.append({
             'id': flight['id'],
             'arrive_time': time
-        }])
+        })
     return arrive_flight
+
+def latest_flight(flights: list)->dict:
+    latest = flights[0]
+    print(flights)
+    for flight in flights:
+        first_time = flight['arrive_time'].split(':')
+        first_hh = int(first_time[0])
+        first_mm = int(first_time[1])
+        first_ss = int(first_time[2])
+        latest_time = latest['arrive_time'].split(':')
+        latest_hh = int(latest_time[0])
+        latest_mm = int(latest_time[1])
+        latest_ss = int(latest_time[2])
+        if (first_hh > latest_hh):
+            latest = flight
+        if ( first_hh >= latest_hh and first_mm > latest_hh):
+            latest = flight
+        if ( first_hh >= latest_hh and first_mm >= latest_mm and first_ss > latest_ss):
+            latest = flights
+    
+    return latest
 
 
 flights = [{
@@ -58,5 +79,6 @@ flights = [{
     "duration_time": '2:10:00'
 }]
 
+flights_arrive = calculate_arrive_flight(flights)
 
-print(calculate_arrive_flight(flights))
+print(latest_flight(flights_arrive))
