@@ -1,0 +1,65 @@
+[
+  {
+    "nombre": "Dragonite",
+    "ataque": 134,
+    "defensa": 95,
+    "ataque_especial": 100,
+    "defenda_especial": 100,
+    "velocidad": 80,
+    "vida": 91
+  },
+  {
+    "nombre": "Tyranitar",
+    "ataque": 134,
+    "defensa": 110,
+    "ataque_especial": 95,
+    "defenda_especial": 100,
+    "velocidad": 61,
+    "vida": 100
+  },
+  {
+    "nombre": "Salamence",
+    "ataque": 135,
+    "defensa": 80,
+    "ataque_especial": 110,
+    "defenda_especial": 80,
+    "velocidad": 100,
+    "vida": 95
+  },
+  {
+    "nombre": "Metagross",
+    "ataque": 135,
+    "defensa": 130,
+    "ataque_especial": 95,
+    "defenda_especial": 90,
+    "velocidad": 70,
+    "vida": 80
+  },
+  {
+    "nombre": "Garchomp",
+    "ataque": 130,
+    "defensa": 95,
+    "ataque_especial": 80,
+    "defenda_especial": 85,
+    "velocidad": 102,
+    "vida": 108
+  },
+  {
+    "nombre": "Garchomp",
+    "ataque": 130,
+    "defensa": 95,
+    "ataque_especial": 80,
+    "defenda_especial": 85,
+    "velocidad": 102,
+    "vida": 108
+  },
+  {
+    "nombre": "Hydreigon",
+    "ataque": 105,
+    "defensa": 90,
+    "ataque_especial": 125,
+    "defenda_especial": 90,
+    "velocidad": 98,
+    "vida": 92
+  }
+]
