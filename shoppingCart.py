@@ -17,6 +17,15 @@ def get_more_expensive_product(shopping_cart: dict) -> str:
     return expensive_product
 
 
+def get_shopping_cart_total_cost(shopping_cart: dict) -> float:
+    total_cost = 0
+    if (len(shopping_cart) > 0):
+        for price in shopping_cart.values():
+            total_cost += price
+
+    return total_cost
+
+
 shopping_cart = {
     'bananas': 1000,
     'candy': 10,
@@ -24,3 +33,5 @@ shopping_cart = {
 }
 
 print(get_more_expensive_product(shopping_cart))
+
+print(get_shopping_cart_total_cost(shopping_cart))
