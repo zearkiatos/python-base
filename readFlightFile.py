@@ -38,8 +38,15 @@ def get_airline_with_more_flights(flights:dict)->str:
             flight_with_more_flights = flight
     return flight_with_more_flights
 
+def get_flight_by_airport(airport:str, flights: dict)->list:
+    flight_by_airport = []
+    for flight in flights:
+        if (flights[flight]['origin'].upper() == airport.upper()):
+            flight_by_airport.append(flight)
+    return flight_by_airport
+
 
 
 flights = upload_flights('flight_airline.csv')
 
-print(get_airline_with_more_flights(flights))
+print(get_flight_by_airport('DCA', flights))
