@@ -45,8 +45,31 @@ def get_flight_by_airport(airport:str, flights: dict)->list:
             flight_by_airport.append(flight)
     return flight_by_airport
 
+def airport_visit_counter(flights:dict)->dict:
+    airport_visit= {}
+    for flight in flights:
+        airport_visit[flights[flight]['origin']] = 0
+        airport_visit[flights[flight]['destiny']] = 0
+    for flight in flights:
+        airport_visit[flights[flight]['origin']] += 1
+        airport_visit[flights[flight]['destiny']] += 1
+    return airport_visit
+
+def get_visitiest_airport(flights: dict)->str:
+    visitiest_airport = None
+    visitiest_quantity = 0
+    airport_visits = airport_visit_counter(flights)
+    for airport in airport_visits:
+        if (airport_visits[airport] > visitiest_quantity):
+            visitiest_quantity = airport_visits[airport]
+            visitiest_airport = airport
+    return visitiest_airport
+
+
 
 
 flights = upload_flights('flight_airline.csv')
 
 print(get_flight_by_airport('DCA', flights))
+
+print(get_visitiest_airport(flights))
