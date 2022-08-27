@@ -4,23 +4,19 @@ PSEUDO_LEGENDARY_MINIMAL_POINTS = 600
 def pokemon_team_builder(pokemon_quantity: int, pokemons: list) -> list:
     pokemonList = []
     returnPokemon = None
-    counter = 0
     totalStat = 0
     for pokemon in pokemons:
         totalStat = pokemon['ataque'] + pokemon['defensa'] + pokemon['ataque_especial'] + \
             pokemon['defensa_especial'] + \
             pokemon['velocidad'] + pokemon['vida']
         if (totalStat >= PSEUDO_LEGENDARY_MINIMAL_POINTS):
-            pokemonList.append(pokemon)
-        #     counter += 1
-        # if (counter == pokemon_quantity):
-        #     break
-    # if len(pokemonList) >= 3 and len(pokemonList) <= 6:
-    #     returnPokemon = pokemonList
-    # else:
-    #     returnPokemon = None
-
-    return pokemonList
+            pokemonList.append(pokemon['nombre'])
+        if (len(pokemonList) == pokemon_quantity):
+            returnPokemon = pokemonList
+            break
+        else:
+            returnPokemon = None
+    return returnPokemon
 
 
 pokemons = [
