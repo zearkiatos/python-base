@@ -20,7 +20,8 @@ def upload_flights(file_path: str) -> dict:
     file.close()
     return flights
 
-def flight_counter(flights:dict)->dict:
+
+def flight_counter(flights: dict) -> dict:
     flight_quantities_by_airline = {}
     for flight in flights:
         flight_quantities_by_airline[flights[flight]['airline']] = 0
@@ -28,7 +29,8 @@ def flight_counter(flights:dict)->dict:
         flight_quantities_by_airline[flights[flight]['airline']] += 1
     return flight_quantities_by_airline
 
-def get_airline_with_more_flights(flights:dict)->str:
+
+def get_airline_with_more_flights(flights: dict) -> str:
     flight_with_more_flights = None
     flight_quantity = 0
     flight_flights_quantities = flight_counter(flights)
@@ -38,15 +40,17 @@ def get_airline_with_more_flights(flights:dict)->str:
             flight_with_more_flights = flight
     return flight_with_more_flights
 
-def get_flight_by_airport(airport:str, flights: dict)->list:
+
+def get_flight_by_airport(airport: str, flights: dict) -> list:
     flight_by_airport = []
     for flight in flights:
         if (flights[flight]['origin'].upper() == airport.upper()):
             flight_by_airport.append(flight)
     return flight_by_airport
 
-def airport_visit_counter(flights:dict)->dict:
-    airport_visit= {}
+
+def airport_visit_counter(flights: dict) -> dict:
+    airport_visit = {}
     for flight in flights:
         airport_visit[flights[flight]['origin']] = 0
         airport_visit[flights[flight]['destiny']] = 0
@@ -55,7 +59,8 @@ def airport_visit_counter(flights:dict)->dict:
         airport_visit[flights[flight]['destiny']] += 1
     return airport_visit
 
-def get_visitiest_airport(flights: dict)->str:
+
+def get_visitiest_airport(flights: dict) -> str:
     visitiest_airport = None
     visitiest_quantity = 0
     airport_visits = airport_visit_counter(flights)
@@ -66,6 +71,32 @@ def get_visitiest_airport(flights: dict)->str:
     return visitiest_airport
 
 
+def get_delay_average(flights: dict) -> dict:
+    flight_quantity = flight_counter(flights)
+    delay_average_by_airline = {}
+    total_delay_by_flight = {}
+    for flight in flights:
+        total_delay_by_flight[flights[flight]['airline']] = 0
+
+    for flight in flights:
+        total_delay_by_flight[flights[flight]['airline']]+= int(flights[flight]['delay'])
+
+    for flight in flights:
+        delay_average_by_airline[flights[flight]['airline']] = total_delay_by_flight[flights[flight]['airline']] / \
+            flight_quantity[flights[flight]['airline']]
+    
+    return delay_average_by_airline
+
+
+def get_the_best_airport(flights: dict) -> str:
+    delay_averages = get_delay_average(flights)
+    delayest_average = delay_averages[list(delay_averages)[0]]
+    delayest_flight = list(delay_averages)[0]
+    for flight in delay_averages:
+        if (delay_averages[flight] < delayest_average):
+            delayest_flight = flight
+            delayest_average = delay_averages[flight]
+    return delayest_flight
 
 
 flights = upload_flights('flight_airline.csv')
@@ -73,3 +104,5 @@ flights = upload_flights('flight_airline.csv')
 print(get_flight_by_airport('DCA', flights))
 
 print(get_visitiest_airport(flights))
+
+print(get_the_best_airport(flights))
