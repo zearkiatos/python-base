@@ -20,5 +20,26 @@ def upload_flights(file_path: str) -> dict:
     file.close()
     return flights
 
+def flight_counter(flights:dict)->dict:
+    flight_quantities_by_airline = {}
+    for flight in flights:
+        flight_quantities_by_airline[flights[flight]['airline']] = 0
+    for flight in flights:
+        flight_quantities_by_airline[flights[flight]['airline']] += 1
+    return flight_quantities_by_airline
 
-print(upload_flights('flight_airline.csv'))
+def get_airline_with_more_flights(flights:dict)->str:
+    flight_with_more_flights = None
+    flight_quantity = 0
+    flight_flights_quantities = flight_counter(flights)
+    for flight in flight_flights_quantities:
+        if(flight_quantity < flight_flights_quantities[flight]):
+            flight_quantity = flight_flights_quantities[flight]
+            flight_with_more_flights = flight
+    return flight_with_more_flights
+
+
+
+flights = upload_flights('flight_airline.csv')
+
+print(get_airline_with_more_flights(flights))
